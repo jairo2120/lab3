@@ -9,7 +9,7 @@ services:
       - MYSQL_DATABASE=wordpress
     volumes: 
       - dbdata:/var/lib/mysql 
-    command: 'default-authentication-plugin=mysql_native_pssword' 
+    command: --default-authentication-plugin=mysql_native_password 
     networks: 
       - app-network 
   wordpress:
@@ -53,7 +53,7 @@ services:
     volumes: 
       - certbot-etc:/etc/letsencrypt
       - wordpress:/var/www/html
-    command: certonly --webroot --webroot-path=/var/www/html --email jairo@jairocarvajal.ml --agree-tos --no-eff-email --staging -d jairocarvajal.ml  -d www.jairocarvajal.ml 
+    command: certonly --webroot --webroot-path=/var/www/html --email jairo@jairocarvajal.ml --agree-tos --no-eff-email --force-renewal -d jairocarvajal.ml  -d www.jairocarvajal.ml 
 volumes:
   certbot-etc:
   wordpress:
